@@ -30,11 +30,11 @@ opt.linebreak = true
 
 -- indentation
 
--- o.expandtab = true              -- convert tabs to spaces
--- o.tabstop = 4                   -- insert 4 spaces for a tab
--- o.shiftwidth = 4                -- the number of spaces inserted for each indentation
--- o.smartindent = true
-
+-- opt.expandtab = true -- convert tabs to spaces
+opt.tabstop = 4 -- insert 4 spaces for a tab
+opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
+-- opt.smartindent = true
+--
 -- windows
 -- vim.o.splitbelow = true
 -- vim.o.splitright = true
@@ -52,3 +52,20 @@ vim.g.mkdp_browser = "/Applications/Arc.app/Contents/MacOS/Arc"
 vim.g.Mm_IgnoreFilePatterns = { "*.pyc", "*.zip" }
 
 vim.g.grammarous_jar_url = "https://www.languagetool.org/download/LanguageTool-5.9.zip"
+
+local function isempty(s)
+  return s == nil or s == ""
+end
+local function use_if_defined(val, fallback)
+  return val ~= nil and val or fallback
+end
+
+-- python provide
+local conda_prefix = os.getenv("CONDA_PREFIX")
+if not isempty(conda_prefix) then
+  vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, conda_prefix .. "/bin/python")
+  vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, conda_prefix .. "/bin/python")
+else
+  vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, "python")
+  vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "python3")
+end

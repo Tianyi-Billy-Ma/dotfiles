@@ -4,7 +4,7 @@
 --
 --
 --
-
+-- Enable/Disable completion
 vim.keymap.set("n", "<leader>p", '<cmd>lua require("cmp").setup { enabled = true }<cr>', { desc = "Enable completion" })
 vim.keymap.set(
   "n",
@@ -12,7 +12,8 @@ vim.keymap.set(
   '<cmd>lua require("cmp").setup { enabled = false }<cr>',
   { desc = "Disable completion" }
 )
-
+-- jj for esc
+vim.keymap.set("i", "jj", "<ESC>", { silent = true })
 -- insert the date in my desired configuration
 vim.keymap.set("n", "<leader>d", "<cmd>r!gendate<cr>", { desc = "Insert date" })
 vim.keymap.set("n", "<leader>h1", "<cmd>r!gendate h 1<cr>", { desc = "Insert date h1" })
@@ -51,3 +52,8 @@ vim.keymap.set("n", "<leader>C", "<cmd>bdelete<cr>", { desc = "Close current buf
 
 -- Grammar check
 vim.keymap.set("n", "<leader>Gc", "<cmd>GrammarousCheck<cr>", { desc = "Grammar Check" })
+
+-- -- Python Debugging
+-- vim.keymap.set("n", "<leader>cpd", "+Python", { desc = "Python debug" })
+--
+-- vim.keymap.set("n", "<leader>cpv", "<cmd>:VenvSelect<cr>", { desc = "Select VirtualEnv" })
