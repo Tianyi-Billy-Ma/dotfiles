@@ -5,33 +5,42 @@
 --
 --
 -- Enable/Disable completion
-vim.keymap.set("n", "<leader>p", '<cmd>lua require("cmp").setup { enabled = true }<cr>', { desc = "Enable completion" })
-vim.keymap.set(
-  "n",
-  "<leader>P",
-  '<cmd>lua require("cmp").setup { enabled = false }<cr>',
-  { desc = "Disable completion" }
-)
+--
+-- Define the toggle function
+local function toggle_cmp()
+  local cmp = require("cmp")
+  if cmp.get_config().enabled then
+    cmp.setup({ enabled = false })
+    print("Completion Disabled")
+  else
+    cmp.setup({ enabled = true })
+    print("Completion Enabled")
+  end
+end
+-- Map the toggle function to a keybinding
+vim.keymap.set("n", "<leader>p", toggle_cmp, { desc = "Toggle completion" })
 -- jj for esc
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
--- insert the date in my desired configuration
-vim.keymap.set("n", "<leader>d", "<cmd>r!gendate<cr>", { desc = "Insert date" })
-vim.keymap.set("n", "<leader>h1", "<cmd>r!gendate h 1<cr>", { desc = "Insert date h1" })
-vim.keymap.set("n", "<leader>h2", "<cmd>r!gendate h 2<cr>", { desc = "Insert date h2" })
+-- -- lsp
+-- Define the toggle function for LSP
+local function toggle_lsp()
+  local clients = vim.lsp.get_active_clients()
+  if next(clients) == nil then
+    -- If no active LSP clients, enable LSP
+    vim.cmd("LspStart")
+    print("LSP Enabled")
+  else
+    -- If there are active LSP clients, disable them
+    vim.cmd("LspStop")
+    print("LSP Disabled")
+  end
+end
 
--- lsp
-vim.keymap.set("n", "<leader>S", "<cmd>LspStop<CR>", { desc = "LspStop" })
-
+-- Map the toggle function to a keybinding
+vim.keymap.set("n", "<leader>S", toggle_lsp, { desc = "Toggle LSP" })
+--
 -- telescope symbols
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope symbols<cr>", { desc = "Find Symbols" })
-
--- convert Current line to title cases
-vim.keymap.set(
-  "n",
-  "<leader>rlt",
-  "<cmd>lua require('textcase').current_word('to_title_case')<CR>",
-  { desc = "Replace Line Title" }
-)
 
 -- these keep the cursor in the middle when scrolling with ctrl d and u
 -- from https://github.com/ThePrimeagen/init.lua
@@ -47,13 +56,30 @@ vim.keymap.set("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>")
 vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>")
 vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>")
 
--- buffer keymaps
-vim.keymap.set("n", "<leader>C", "<cmd>bdelete<cr>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<C-s>", "<cmd>w<CR>")
 
--- Grammar check
-vim.keymap.set("n", "<leader>Gc", "<cmd>GrammarousCheck<cr>", { desc = "Grammar Check" })
+local wk = require("which-key")
 
--- -- Python Debugging
--- vim.keymap.set("n", "<leader>cpd", "+Python", { desc = "Python debug" })
---
--- vim.keymap.set("n", "<leader>cpv", "<cmd>:VenvSelect<cr>", { desc = "Select VirtualEnv" })
+--Grammar Check
+
+wk.register({
+  G = {
+    name = "grammar",
+    c = { "<cmd>GrammarousCheck<cr>", "Grammar Check" },
+    s = { "z=", "Suggest Corrections" },
+    n = { "]s", "Jump to the next misspelled word" },
+    p = { "]s", "Jump to the previous misspelled word" },
+  },
+  M = {
+    name = "markers",
+    d = { "<cmd>delm!<CR>", "Delete Lower Case Markers" },
+  },
+}, { prefix = "<leader>" })
+
+vim.keymap.set("n", "<C-a>", "ggVG")
+
+vim.keymap.set("n", "<leader>j", "zm")
+vim.keymap.set("n", "<leader>k", "zr")
+
+vim.keymap.set("n", "<leader>K", require("ufo").openAllFolds)
+vim.keymap.set("n", "<leader>J", require("ufo").closeAllFolds)

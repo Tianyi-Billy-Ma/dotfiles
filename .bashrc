@@ -50,6 +50,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
 	# brew bash completion
 	[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+	[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 else
 	#	source /usr/share/fzf/key-bindings.bash
 	#	source /usr/share/fzf/completion.bash

@@ -4,32 +4,16 @@
 
 local opt = vim.opt
 
--- try this: vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
---
-
 opt.ignorecase = true
-
--- pandoc related
+opt.clipboard = "unnamedplus"
 
 opt.spell = false
-opt.foldmethod = "manual"
-opt.foldenable = false
-
--- colorschemes
--- require('gruvbox-material').setup()
--- o.termguicolors = true
--- opt.gruvbox_material_enable_italic_comment = 1
--- undo
--- vim.opt.undodir = vim.fn.expand('~/.nvim/undodir')
-
--- scrolling
--- opt.number = false
-opt.relativenumber = false
+---- scrolling
+opt.relativenumber = true
 opt.scrolloff = 8
 opt.linebreak = true
 
 -- indentation
-
 -- opt.expandtab = true -- convert tabs to spaces
 opt.tabstop = 4 -- insert 4 spaces for a tab
 opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
@@ -69,3 +53,18 @@ else
   vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, "python")
   vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "python3")
 end
+
+-- Config for nvim-ufo
+--
+opt.foldcolumn = "auto"
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.fillchars = {
+  foldopen = "▾",
+  fold = " ",
+  eob = " ",
+  foldclose = "▸",
+}
