@@ -7,18 +7,20 @@ local opt = vim.opt
 opt.ignorecase = true
 opt.clipboard = "unnamedplus"
 
+opt.swapfile = false
+
 opt.spell = false
 ---- scrolling
 opt.relativenumber = true
-opt.scrolloff = 8
+opt.scrolloff = 99
 opt.linebreak = true
 
 -- indentation
 -- opt.expandtab = true -- convert tabs to spaces
 opt.tabstop = 4 -- insert 4 spaces for a tab
 opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
--- opt.smartindent = true
---
+opt.smartindent = true
+
 -- windows
 -- vim.o.splitbelow = true
 -- vim.o.splitright = true
@@ -68,3 +70,4 @@ opt.fillchars = {
   eob = " ",
   foldclose = "▸",
 }
+vim.g.markdown_folding = 1

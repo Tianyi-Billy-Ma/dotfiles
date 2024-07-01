@@ -14,9 +14,12 @@ new_note() {
 
 	# Format the file with the daily template
 	cat <<EOF >"$file"
-
-Tags: #Daily-Note
-
+---
+id: $today
+aliases: 
+tags:
+ - Daily-Note
+---
 [[$yesterday]] - [[$tomorrow]]
 
 ## Intention
@@ -32,8 +35,6 @@ What do I want to achieve today and tomorrow?
 
 ---
 ### Notes created today
-
-
 
 \`\`\`dataview 
 LIST 

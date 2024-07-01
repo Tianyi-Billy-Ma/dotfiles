@@ -28,6 +28,14 @@ brew install bash-completion@2 amethyst fzf newsboat
 
 brew install neovim lazygit
 
+brew 'font-fira-code-nerd-font'
+brew 'font-hack-nerd-font'
+brew 'font-iosevka-term-nerd-font'
+brew 'font-jetbrains-mono-nerd-font'
+brew 'font-roboto-mono-nerd-font'
+cask 'font-caskaydia-cove-nerd-font'
+cask 'sf-symbols'
+
 # ubuntu packages apt
 # sudo apt install ripgrep gh
 #

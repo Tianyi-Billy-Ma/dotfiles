@@ -63,6 +63,7 @@ local wk = require("which-key")
 --Grammar Check
 
 wk.register({
+  -- Keybindings for Grammar
   G = {
     name = "grammar",
     c = { "<cmd>GrammarousCheck<cr>", "Grammar Check" },
@@ -70,16 +71,24 @@ wk.register({
     n = { "]s", "Jump to the next misspelled word" },
     p = { "]s", "Jump to the previous misspelled word" },
   },
+  -- Keybindings for Markers
   M = {
     name = "markers",
     d = { "<cmd>delm!<CR>", "Delete Lower Case Markers" },
+  },
+  o = {
+    name = "Obsidian",
+    t = { "<cmd>ObsidianTags<CR>", "[T]ags" },
+    d = { "<cmd>ObsidianToday<CR>", "Note To[d]ay" },
+    n = { "<cmd>ObsidianNew<CR>", "[N]ew Note" },
   },
 }, { prefix = "<leader>" })
 
 vim.keymap.set("n", "<C-a>", "ggVG")
 
-vim.keymap.set("n", "<leader>j", "zm")
-vim.keymap.set("n", "<leader>k", "zr")
+-- Keybindigns for foldings by nvim-ufo
+vim.keymap.set("n", "<leader>K", require("ufo").openAllFolds, { desc = "Open All Folds" })
+vim.keymap.set("n", "<leader>J", require("ufo").closeAllFolds, { desc = "Close All Folds" })
 
-vim.keymap.set("n", "<leader>K", require("ufo").openAllFolds)
-vim.keymap.set("n", "<leader>J", require("ufo").closeAllFolds)
+-- Keybindings for no-neck-pain
+vim.keymap.set("n", "<leader>nn", "<cmd>NoNeckPain<cr>", { desc = "[N]o [N]eckpain" })

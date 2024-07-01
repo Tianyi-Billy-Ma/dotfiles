@@ -12,7 +12,6 @@ return {
         require("ufo").detach()
       end,
     })
-
     require("ufo").setup(opts)
   end,
 }
