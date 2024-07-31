@@ -16,7 +16,7 @@ opt.scrolloff = 99
 opt.linebreak = true
 
 -- indentation
--- opt.expandtab = true -- convert tabs to spaces
+opt.expandtab = true -- convert tabs to spaces
 opt.tabstop = 4 -- insert 4 spaces for a tab
 opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 opt.smartindent = true
@@ -71,3 +71,8 @@ opt.fillchars = {
   foldclose = "▸",
 }
 vim.g.markdown_folding = 1
+vim.g.lazygit_config = false
+vim.g.maplocalleader = ","
+
+vim.o.cursorline = true
+vim.o.cursorcolumn = true

@@ -61,7 +61,6 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>")
 local wk = require("which-key")
 
 --Grammar Check
-
 wk.register({
   -- Keybindings for Grammar
   G = {
@@ -92,3 +91,5 @@ vim.keymap.set("n", "<leader>J", require("ufo").closeAllFolds, { desc = "Close A
 
 -- Keybindings for no-neck-pain
 vim.keymap.set("n", "<leader>nn", "<cmd>NoNeckPain<cr>", { desc = "[N]o [N]eckpain" })
+
+-- vim.keymap.set("i", "<S-Esc>", "~")
