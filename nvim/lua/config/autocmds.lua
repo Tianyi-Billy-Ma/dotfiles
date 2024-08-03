@@ -56,16 +56,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- })
 --
 --
--- ~/.config/nvim/init.lua
-
--- Define a function to open your terminal application
-local function TexFocusVim()
-  -- Replace 'TERMINAL' with the name of your terminal application
-  -- Example: os.execute("open -a iTerm")
-  -- Example: os.execute("open -a Alacritty")
-  os.execute("open -a Alacritty")
-  vim.cmd("redraw!")
-end
 
 -- Create an augroup and define the autocmd
 vim.api.nvim_create_augroup("vimtex_event_focus", { clear = true })
@@ -76,4 +66,18 @@ vim.api.nvim_create_autocmd("User", {
     vim.cmd("redraw!")
   end,
   group = "vimtex_event_focus",
+})
+-- local group = vim.api.nvim_create_augroup('vimtex', {})
+-- vim.api.nvim_create_autocmd('User', {
+--   pattern = 'VimtexEventViewReverse',
+--   group = group,
+--   command = "call b:vimtex.viewer.xdo_focus_vim()"
+-- })
+
+-- Create symmetrical `$$` pair only in Tex files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    require("mini.pairs").map_buf(0, "i", "$", { action = "closeopen", pair = "$$" })
+  end,
 })
